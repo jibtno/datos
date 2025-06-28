@@ -218,16 +218,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Main content */}
       <main
-        className={`flex-1 ${isSidebarExpanded ? "ml-64" : "ml-14"} w-[calc(100vw-16rem)] min-h-screen bg-white px-6 py-8 transition-all duration-200`}
+        className={`flex-1 ${isSidebarExpanded ? "ml-64" : "ml-14"} w-[calc(100vw-16rem)] min-h-screen bg-white px-4 py-6 transition-all duration-200`}
       >
-        {/* Centered global search */}
-        <div className="w-full mb-6 flex justify-center">
-          <input
-            type="text"
-            placeholder="Search cities, features, or tools..."
-            className="w-full max-w-xl px-4 py-3 rounded-xl border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-          />
-        </div>
         {children}
       </main>
     </div>
