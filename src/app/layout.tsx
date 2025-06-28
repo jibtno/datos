@@ -1,3 +1,4 @@
+import "../styles/globals.css";
 "use client";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
