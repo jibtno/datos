@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Use Outfit font globally */
+body {
+  @apply font-outfit;
+}
+
 @keyframes shake {
   0% { transform: translateX(0);}
   20% { transform: translateX(-8px);}

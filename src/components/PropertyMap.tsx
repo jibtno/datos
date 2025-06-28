@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 
 // Fix Leaflet marker icon issue in Next.js
 import L from "leaflet";
