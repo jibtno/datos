@@ -1,62 +1,60 @@
-Play Next.js is a free and **Open-source SaaS starter kit and boilerplate, designed and built for SaaS startups**, apps, businesses, and more. With its premium design and essential UI components and pages, it provides everything you need to kickstart a feature-rich SaaS website.
+# Project Overview
 
+This project is a modern Next.js application styled with Tailwind CSS and equipped with essential integrations for a SaaS platform. The codebase is streamlined for maintainability, performance, and ease of development.
 
-[![Play Next.js](https://github.com/NextJSTemplates/play-nextjs/blob/main/nextjs-play.png)](https://play.nextjstemplates.com)
+## Features
 
-## Free SaaS Boilerplate and Starter Kit for Next.js 🚀
-Play Next.js SaaS Boilerplate and Starter Kit is a free, open-source solution ideal for startups, SaaS companies, and more. It offers essential UI components, authentication and database integration, and Stripe integration. Its superior design and functionality make it a go-to choice for launching a feature-rich SaaS website efficiently.
+- Next.js (latest version)
+- Tailwind CSS utility-first styling
+- Prisma ORM with PostgreSQL
+- NextAuth for authentication
+- Stripe integration for payments
+- MDX for blogging
+- Prettier and ESLint for consistent code quality
 
-### [🚀 View Live Demo](https://play.nextjstemplates.com/)
+## Getting Started
 
-### [🔌 Documentation](https://nextjstemplates.com/docs)
+1. **Install dependencies**
 
-### All Essential Integrations - DB, Auth, Payment, MDX, and more ⚡
-Play Next.js SaaS Starter kit includes all the key integrations required to build a fully functional SaaS platform.
+    ```bash
+    npm install
+    ```
 
-- **PostgreSQL for Database**: Comes with PostgreSQL integration with Prisma which is a powerful and open-source relational database system ensures data integrity and reliability.
+2. **Start the development server**
 
-- **NextAuth for Authentication**: Play Next.js utilizes NextAuth, a versatile solution that provides secure login and user management.
-
-- **MDX for Blogs**: MDX uniquely combines Markdown and JSX, Play Next.js comes with complete blogging solution to create and maintain blog using MDX.
-
-- **Stripe for Subscription Payments**: Stripe, a globally trusted payment processing platform, offers robust security features and smooth checkout experiences.
-
-These integrations work together to simplify development and enhance the user experience.
-
-### Essential SaaS Pages & Components and Styled Using Tailwind CSS 🎨
-This Next.js SaaS Boilerplate and Starter Kit is **styled using Tailwind CSS**, a highly flexible and customizable utility-first CSS framework. Leveraging the power of Tailwind, each component and page of this kit, including **login, signup, blog, about, and others, has been handcrafted to offer top-notch aesthetics** while maintaining peak usability. 
-
-### Crafted Using [🎨 TailGrids Components](https://tailgrids.com)
-
-Play Next.js SaaS boilerplate, you can enjoy a professional-looking website that offers seamless operation, all while significantly reducing your web development time and effort.
-___
-
-### 🚀 Deploy Now
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FNextJSTemplates%2Fplay-nextjs)
-
-[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/NextJSTemplates/play-nextjs)
-
-### Setup Instructions
-
-Follow these steps to set up and run this template on your local machine:
-
-1. Begin by downloading and extracting the template from **Next.js Templates**.
-
-2. Once you've done that, navigate into the template directory using the **cd** command.
-
-3. Install the necessary dependencies by running the following commands:
-
-```bash
-    npm install --legacy-peer-deps
-```
-**Note:** As of right now React 19 causes peer dependencies issues with some packages, so the `legacy-peer-deps` flag is required.
-
-4. Now you're ready to start the project on your local server. Use the following command to get it up and running:
-
-```bash
+    ```bash
     npm run dev
- ```
+    ```
+
+3. **Build for production**
+
+    ```bash
+    npm run build
+    ```
+
+## Project Structure
+
+- `src/` — Main source code (pages, components, etc.)
+- `prisma/` — Prisma database files
+- `data/` — Data assets
+- `public/` — Static files (if present)
+- `scripts/` — Automation scripts
+- `tailwind.config.ts` — Tailwind CSS config
+- `postcss.config.js` — PostCSS config
+
+## Troubleshooting
+
+- Ensure Node.js v18+ is installed.
+- If Tailwind CSS styles are missing, verify `tailwind.config.ts` and `postcss.config.js`.
+- For issues with peer dependencies, try installing with `--legacy-peer-deps`.
+
+## Deployment
+
+You can deploy via [Vercel](https://vercel.com/) or [Netlify](https://netlify.com/) for free. Both support Next.js projects out of the box.
+
+## License
+
+MIT — Free for personal and commercial use.
 
 This will launch the template on [localhost:3000](http://localhost:3000).
 
