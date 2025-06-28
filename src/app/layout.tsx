@@ -81,6 +81,88 @@ const NAV_SETTINGS = {
 };
 
 /* ---------- Layout component ---------- */
+"use client";
+import "../styles/globals.css";
+import React, { useState } from "react";
+import { usePathname } from "next/navigation";
+import {
+  Home,
+  Map,
+  BarChart2,
+  TrendingUp,
+  List,
+  Calendar,
+  Inbox,
+  Wrench,
+  Settings,
+  Plus,
+  ChevronDown,
+} from "lucide-react";
+
+/* ---------- Helper for chevron rotation ---------- */
+const DownChevron = ({ open }: { open: boolean }) => (
+  <ChevronDown
+    size={18}
+    className={`ml-auto transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+    strokeWidth={2}
+  />
+);
+
+/* ---------- Updated navigation structure ---------- */
+const NAV = [
+  {
+    type: "group",
+    name: "Dashboard",
+    icon: <Home size={22} />,
+    subpages: [
+      { name: "Overview", href: "/admin/dashboard" },
+      { name: "Quick Stats", href: "/admin/dashboard/quick-stats" },
+    ],
+  },
+  {
+    type: "group",
+    name: "Explore Markets",
+    icon: <Map size={22} />,
+    subpages: [
+      { name: "Interactive Map", href: "/admin/explore" },
+      { name: "Top Locations", href: "/admin/explore/top-locations" },
+      { name: "Compare Areas", href: "/admin/explore/compare" },
+    ],
+  },
+  {
+    type: "group",
+    name: "Performance",
+    icon: <TrendingUp size={22} />,
+    subpages: [
+      { name: "Analytics", href: "/admin/performance/analytics" },
+      { name: "ROI Calculator", href: "/admin/performance/roi" },
+    ],
+  },
+  {
+    type: "group",
+    name: "Manage Properties",
+    icon: <Wrench size={22} />,
+    subpages: [
+      { name: "My Listings", href: "/admin/manage/listings" },
+      { name: "Booking Calendar", href: "/admin/manage/calendar" },
+      { name: "Smart Tools", href: "/admin/manage/smart-tools" },
+      { name: "Inbox", href: "/admin/manage/inbox" },
+    ],
+  },
+];
+
+/* ---------- Account / settings group ---------- */
+const NAV_SETTINGS = {
+  type: "group",
+  name: "Account",
+  icon: <Settings size={22} />,
+  subpages: [
+    { name: "My Profile", href: "/admin/settings/profile" },
+    { name: "Settings", href: "/admin/settings" },
+    { name: "Billing", href: "/admin/settings/billing" },
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
