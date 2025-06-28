@@ -226,7 +226,7 @@ const FeaturedListings = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {paginatedListings.map((listing) => {
+        {paginatedListings.map((listing, i) => {
           const type =
             listing.type && listing.type.trim()
               ? listing.type
@@ -242,9 +242,22 @@ const FeaturedListings = () => {
             ? Math.round(displayPrice / 30)
             : displayPrice;
 
+          // DEV WARNING for bad data
+          if (
+            process.env.NODE_ENV === "development" &&
+            (!listing.id && !listing.url)
+          ) {
+            // eslint-disable-next-line no-console
+            console.warn(
+              "FeaturedListings: Encountered listing with missing id and url, using index fallback for key.",
+              listing,
+              i
+            );
+          }
+
           return (
             <Card
-              key={listing.__zone + ':' + listing.id}
+              key={listing.__zone + ':' + (listing.id ?? listing.url ?? i)}
               className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
             >
               <div className="h-48 relative bg-gray-200 flex items-center justify-center">
