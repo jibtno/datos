@@ -13,7 +13,9 @@ import {
   GitCompare,
   Lock,
   Check,
-  Settings,
+  ToyBrick,
+  PanelsTopLeft,
+  BellRing,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +24,7 @@ const NAV = [
   {
     title: "Dashboard",
     items: [
-      { name: "Overview",       href: "/admin/dashboard",            icon: TrendingUp },
+      { name: "Overview",       href: "/admin/dashboard",            icon: PanelsTopLeft },
       { name: "My Properties",  href: "/admin/dashboard/properties", icon: Home },        // icon changed
     ],
   },
@@ -37,7 +39,7 @@ const NAV = [
     title: "Tools",
     items: [
       { name: "Pricing Coach",    href: "/admin/tools/pricing",  icon: Zap },
-      { name: "Alerts Center",    href: "/admin/tools/alerts",   icon: Lock },
+      { name: "Alerts Center",    href: "/admin/tools/alerts",   icon: BellRing },
       { name: "Comparison Radar", href: "/admin/tools/compare",  icon: GitCompare },
     ],
   },
