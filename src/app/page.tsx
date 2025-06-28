@@ -2,7 +2,6 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-import StickyHeader        from "@/components/StickyHeader";
 import HeroValueProp       from "@/components/HeroValueProp";
 import HowItWorks          from "@/components/HowItWorks";
 import ComparisonGrid      from "@/components/ComparisonGrid";
