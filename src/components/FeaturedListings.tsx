@@ -244,7 +244,7 @@ const FeaturedListings = () => {
 
           return (
             <Card
-              key={listing.id}
+              key={listing.__zone + ':' + listing.id}
               className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
             >
               <div className="h-48 relative bg-gray-200 flex items-center justify-center">
