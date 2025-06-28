@@ -81,7 +81,7 @@ const NAV_SETTINGS = {
 };
 
 /* ---------- Layout component ---------- */
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarHovered, setSidebarHovered] = useState(false);
@@ -89,12 +89,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const isSidebarExpanded = sidebarOpen || sidebarHovered;
 
-  /* Toggle accordion groups */
   function handleGroupToggle(name: string) {
     setOpenGroups((prev) => ({ ...prev, [name]: !prev[name] }));
   }
 
-  /* ---------- Individual group component ---------- */
   function NavGroup({ group }: { group: typeof NAV[0] | typeof NAV_SETTINGS }) {
     const open = openGroups[group.name] ?? false;
     return (
@@ -116,8 +114,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {isSidebarExpanded && <span>{group.name}</span>}
           {isSidebarExpanded && <DownChevron open={open} />}
         </div>
-
-        {/* Sub-links */}
         {isSidebarExpanded && (
           <div
             className={`transition-all duration-200 overflow-hidden ${
@@ -142,95 +138,95 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     );
   }
 
-  /* ---------- Render ---------- */
   return (
-    <div className="bg-white min-h-screen text-gray-900 flex">
-      {/* Sidebar */}
-      <aside
-        className={`
-          ${isSidebarExpanded ? "w-64" : "w-14"}
-          min-h-screen bg-white shadow-lg border-r border-gray-100 flex flex-col fixed left-0 top-0 bottom-0 z-30
-          transition-all duration-200 overflow-x-hidden
-        `}
-        onMouseEnter={() => setSidebarHovered(true)}
-        onMouseLeave={() => setSidebarHovered(false)}
-      >
-        {/* Logo / toggle section */}
-        <div className="h-16 flex items-center border-b border-gray-100 relative pl-5 pr-1">
-          {isSidebarExpanded && (
-            <span className="text-xl font-extrabold tracking-tight text-blue-600 ml-1 whitespace-nowrap">
-              PropertyIQ
-            </span>
-          )}
-          <button
-            className={`absolute top-1/2 -translate-y-1/2 bg-gray-100 text-gray-500 rounded-full p-2 shadow-md left-1 ${
-              isSidebarExpanded ? "right-2 left-auto" : ""
-            }`}
-            onClick={() => setSidebarOpen((prev) => !prev)}
-            aria-label="Toggle sidebar"
+    <html lang="en">
+      <body>
+        <div className="bg-white min-h-screen text-gray-900 flex">
+          {/* Sidebar */}
+          <aside
+            className={`
+              ${isSidebarExpanded ? "w-64" : "w-14"}
+              min-h-screen bg-white shadow-lg border-r border-gray-100 flex flex-col fixed left-0 top-0 bottom-0 z-30
+              transition-all duration-200 overflow-x-hidden
+            `}
+            onMouseEnter={() => setSidebarHovered(true)}
+            onMouseLeave={() => setSidebarHovered(false)}
           >
-            {isSidebarExpanded ? (
-              /* collapse icon */
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
+            {/* Logo / toggle section */}
+            <div className="h-16 flex items-center border-b border-gray-100 relative pl-5 pr-1">
+              {isSidebarExpanded && (
+                <span className="text-xl font-extrabold tracking-tight text-blue-600 ml-1 whitespace-nowrap">
+                  PropertyIQ
+                </span>
+              )}
+              <button
+                className={`absolute top-1/2 -translate-y-1/2 bg-gray-100 text-gray-500 rounded-full p-2 shadow-md left-1 ${
+                  isSidebarExpanded ? "right-2 left-auto" : ""
+                }`}
+                onClick={() => setSidebarOpen((prev) => !prev)}
+                aria-label="Toggle sidebar"
               >
-                <path d="M19 12H5" strokeLinecap="round" />
-              </svg>
-            ) : (
-              /* hamburger icon */
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
+                {isSidebarExpanded ? (
+                  /* collapse icon */
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M19 12H5" strokeLinecap="round" />
+                  </svg>
+                ) : (
+                  /* hamburger icon */
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
+                  </svg>
+                )}
+              </button>
+            </div>
+            {/* Navigation groups */}
+            <nav className="flex-1 flex flex-col py-6">
+              <div className="flex flex-col gap-3 px-1">
+                {NAV.map((item) => (
+                  <NavGroup key={item.name} group={item} />
+                ))}
+                <NavGroup group={NAV_SETTINGS} />
+              </div>
+            </nav>
+            {/* Quick-Add button */}
+            <div className="px-4 pb-6">
+              <button
+                className="w-full flex items-center justify-center gap-2 rounded-xl py-3 text-base font-semibold text-gray-800 bg-white hover:bg-blue-50 transition"
+                aria-label="Quick add"
               >
-                <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
-              </svg>
-            )}
-          </button>
-        </div>
-
-        {/* Navigation groups */}
-        <nav className="flex-1 flex flex-col py-6">
-          <div className="flex flex-col gap-3 px-1">
-            {NAV.map((item) => (
-              <NavGroup key={item.name} group={item} />
-            ))}
-            <NavGroup group={NAV_SETTINGS} />
-          </div>
-        </nav>
-
-        {/* Quick-Add button */}
-        <div className="px-4 pb-6">
-          <button
-            className="w-full flex items-center justify-center gap-2 rounded-xl py-3 text-base font-semibold text-gray-800 bg-white hover:bg-blue-50 transition"
-            aria-label="Quick add"
+                <Plus size={22} />
+                {isSidebarExpanded && "Quick Add"}
+              </button>
+            </div>
+          </aside>
+          {/* Main content */}
+          <main
+            className={`flex-1 ${isSidebarExpanded ? "ml-64" : "ml-14"} w-[calc(100vw-16rem)] min-h-screen bg-white px-6 py-8 transition-all duration-200`}
           >
-            <Plus size={22} />
-            {isSidebarExpanded && "Quick Add"}
-          </button>
+            {/* Centered global search */}
+            <div className="w-full mb-6 flex justify-center">
+              <input
+                type="text"
+                placeholder="Search cities, features, or tools..."
+                className="w-full max-w-xl px-4 py-3 rounded-xl border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+              />
+            </div>
+            {children}
+          </main>
         </div>
-      </aside>
-
-      {/* Main content */}
-      <main
-        className={`flex-1 ${isSidebarExpanded ? "ml-64" : "ml-14"} w-[calc(100vw-16rem)] min-h-screen bg-white px-6 py-8 transition-all duration-200`}
-      >
-        {/* Centered global search */}
-        <div className="w-full mb-6 flex justify-center">
-          <input
-            type="text"
-            placeholder="Search cities, features, or tools..."
-            className="w-full max-w-xl px-4 py-3 rounded-xl border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-          />
-        </div>
-        {children}
-      </main>
-    </div>
+      </body>
+    </html>
   );
 }
