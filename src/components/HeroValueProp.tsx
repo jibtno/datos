@@ -21,8 +21,13 @@ const HeroValueProp = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="min-h-screen overflow-hidden relative">
+      {/* Floating background elements */}
+      <div className="absolute top-20 left-10 w-96 h-96 gradient-primary opacity-15 rounded-full filter blur-3xl float"></div>
+      <div className="absolute bottom-20 right-10 w-80 h-80 gradient-secondary opacity-10 rounded-full filter blur-3xl float-delayed"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 gradient-accent opacity-8 rounded-full filter blur-3xl morph-shape"></div>
+
+      <main className="container mx-auto px-4 py-8 relative z-10">
         <div className="text-center space-y-8">
           {/* Core promise */}
           <div className="space-y-4">
@@ -169,7 +174,7 @@ const HeroValueProp = () => {
             ))}
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
