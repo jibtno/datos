@@ -48,7 +48,6 @@ const Index = () => {
       <div className="-mt-14 pt-0">
         <HeroValueProp />
       </div>
-      <HowItWorks />
       <ComparisonGrid />
       <TestimonialsSection />
       <PricingTeaser />

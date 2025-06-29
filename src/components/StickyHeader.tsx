@@ -13,14 +13,25 @@ const StickyHeader = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* colour helpers */
+  // Colors
+  const blueText = "text-blue-900";
+  const blueHover = "hover:text-blue-900";
+
+  // Nav/link styling
   const linkClass = scrolled
     ? "text-gray-600 hover:text-gray-900"
-    : "text-white/90 hover:text-white";
-  const brandText = scrolled ? "text-gray-900" : "text-white";
+    : `${blueText} ${blueHover}`;
+
+  // Brand styling
+  const brandText = blueText;
+
+  // Button font should match hero: font-sans (Inter) and bold
+  const buttonFont = "font-sans font-bold";
+
+  // Button styling
   const buttonClass = scrolled
-    ? "border-blue-600 text-blue-600 hover:bg-blue-50"
-    : "border-white text-white hover:bg-white/10";
+    ? `border-blue-600 text-gray-600 hover:bg-blue-50 bg-white ${buttonFont}`
+    : `border-transparent bg-transparent ${blueText} hover:bg-transparent hover:${blueText} ${buttonFont}`;
 
   return (
     <header
@@ -35,25 +46,27 @@ const StickyHeader = () => {
           {/* brand */}
           <div className="flex items-center gap-2">
             <Calculator
-              className={`h-6 w-6 ${scrolled ? "text-blue-600" : "text-white"}`}
+              className={`h-6 w-6 ${blueText}`}
             />
             <span className={`text-lg font-bold ${brandText}`}>PropROI</span>
           </div>
 
-          {/* desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            <button className={`${linkClass} font-medium`}>
-              Explore Markets
-            </button>
-            <button className={`flex items-center gap-1 ${linkClass} font-medium`}>
-              <GitCompare className="h-4 w-4" />
-              Compare
-            </button>
-            <button className={`flex items-center gap-1 ${linkClass} font-medium`}>
-              <TrendingUp className="h-4 w-4" />
-              ROI Calculator
-            </button>
-          </nav>
+          {/* desktop nav - only show when scrolled */}
+          {scrolled && (
+            <nav className="hidden md:flex items-center gap-6">
+              <button className={`${linkClass} font-medium`}>
+                Explore Markets
+              </button>
+              <button className={`flex items-center gap-1 ${linkClass} font-medium`}>
+                <GitCompare className="h-4 w-4" />
+                Compare
+              </button>
+              <button className={`flex items-center gap-1 ${linkClass} font-medium`}>
+                <TrendingUp className="h-4 w-4" />
+                ROI Calculator
+              </button>
+            </nav>
+          )}
 
           {/* actions */}
           <div className="flex items-center gap-3">

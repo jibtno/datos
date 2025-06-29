@@ -1,59 +1,83 @@
-const colors = require('tailwindcss/colors');
+/** @type {import('tailwindcss').Config} */
+import plugin from "tailwindcss-animate";
 
-module.exports = {
-  darkMode: "class",
+export default {
+  darkMode: ["class"],
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    // Add any other paths you need here
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
-        // outfit: ["var(--font-outfit)", "sans-serif"],
-        // mont:   ["Mont", "sans-serif"],
-      },
-      fontSize: {
-        "theme-xs": "0.75rem",    // 12 px
-        "theme-sm": "0.8125rem",  // 13 px
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       colors: {
-        ...colors,
-        primary: "#FF6B00",
-        brand: colors.blue,
-        'blue-light': colors.sky,
-        gray: colors.slate,
-        success: colors.emerald,
-        error: colors.red,
-        warning: colors.amber,
-        'theme-pink': colors.pink,
-        'theme-purple': colors.purple,
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+        },
       },
-      boxShadow: {
-        'theme-sm': 'var(--shadow-theme-sm)',
-        'theme-md': 'var(--shadow-theme-md)',
-        'theme-lg': 'var(--shadow-theme-lg)',
-        'theme-xl': 'var(--shadow-theme-xl)',
-        'theme-xs': 'var(--shadow-theme-xs)',
-        'datepicker': 'var(--shadow-datepicker)',
-        'focus-ring': 'var(--shadow-focus-ring)',
-        'slider-navigation': 'var(--shadow-slider-navigation)',
-        'tooltip': 'var(--shadow-tooltip)',
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        // Add custom keyframes from your previous config if needed
       },
-      zIndex: {
-        '1': 'var(--z-index-1)',
-        '9': 'var(--z-index-9)',
-        '99': 'var(--z-index-99)',
-        '999': 'var(--z-index-999)',
-        '9999': 'var(--z-index-9999)',
-        '99999': 'var(--z-index-99999)',
-        '999999': 'var(--z-index-999999)',
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        // Add custom animations from your previous config if needed
       },
+      // You can add any additional theme extensions here, such as fontFamily, boxShadow, etc.
     },
   },
   plugins: [
-    require("@tailwindcss/forms"),
-    require("tailgrids/plugin"),
+    plugin,
+    // Add other plugins if you have them
   ],
 };
