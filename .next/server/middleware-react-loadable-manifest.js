@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"components/InteractiveMarketMap.client.tsx -> ./InteractiveMarketMap\":{\"id\":\"components/InteractiveMarketMap.client.tsx -> ./InteractiveMarketMap\",\"files\":[\"static/chunks/_app-pages-browser_src_components_InteractiveMarketMap_tsx.js\"]}}"

@@ -1,0 +1,9 @@
+{
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/analytics/market/page": "app/admin/analytics/market/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/account/profile/page": "app/admin/account/profile/page.js",
+  "/admin/analytics/market/province/[province]/page": "app/admin/analytics/market/province/[province]/page.js"
+}

@@ -13,7 +13,6 @@ import {
 import L, { LatLngExpression } from "leaflet";
 import { Crosshair } from "lucide-react";
 import provincePaths from "@/data/provincePaths";
-import "leaflet/dist/leaflet.css";
 
 /* ─────────────────────── helper types ────────────────────── */
 interface Listing {

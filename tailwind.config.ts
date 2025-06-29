@@ -1,7 +1,6 @@
-import type { Config } from "tailwindcss";
-const colors = require('tailwindcss/colors')
+const colors = require('tailwindcss/colors');
 
-const config: Config = {
+module.exports = {
   darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,16 +9,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
-  fontFamily: {
-    outfit: ["var(--font-outfit)", "sans-serif"],
-    mont:   ["Mont", "sans-serif"],
-  },
-  fontSize: {
-    "theme-xs": "0.75rem",    // 12 px
-    "theme-sm": "0.8125rem",  // 13 px
-  },
-  // colours, boxShadow, zIndex … unchanged
-},
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+        // outfit: ["var(--font-outfit)", "sans-serif"],
+        // mont:   ["Mont", "sans-serif"],
+      },
+      fontSize: {
+        "theme-xs": "0.75rem",    // 12 px
+        "theme-sm": "0.8125rem",  // 13 px
+      },
       colors: {
         ...colors,
         primary: "#FF6B00",
@@ -59,4 +57,3 @@ const config: Config = {
     require("tailgrids/plugin"),
   ],
 };
-export default config;
