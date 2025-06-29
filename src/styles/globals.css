@@ -113,80 +113,81 @@
 }
 
 @layer utilities {
-  /* Glassmorphic utilities for light theme */
+  /* ========== GLASSMORPHIC EFFECTS & PREMIUM BACKGROUND UTILS ========== */
+
+  /* Glassmorphic utilities */
   .glass {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
-  
-  .glass-strong {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(30px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  }
-  
+
   .glass-subtle {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
-  
-  /* Gradient overlays for light theme */
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Gradient overlays */
   .gradient-primary {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
-  
   .gradient-secondary {
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   }
-  
   .gradient-accent {
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   }
-  
-  /* Light theme text gradients */
+
+  /* Text gradients */
   .gradient-text-primary {
     background: linear-gradient(135deg, #1e293b 0%, #475569 50%, #334155 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  
   .gradient-text-accent {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  
-  /* Floating animations */
+
+  /* Floating animations for depth */
   .float {
     animation: float 6s ease-in-out infinite;
   }
-  
   .float-delayed {
     animation: float 6s ease-in-out infinite;
     animation-delay: 2s;
   }
-  
   @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
   }
-  
-  /* Pulse glow effect for light theme */
+
+  /* Morphing blob shapes for dynamic movement */
+  .morph-shape {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transition: border-radius 0.5s ease;
+  }
+  .morph-shape:hover {
+    border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
+  }
+
+  /* Pulse glow for CTA and accent elements */
   .pulse-glow {
     animation: pulse-glow 3s ease-in-out infinite;
   }
-  
   @keyframes pulse-glow {
     0%, 100% {
       box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
@@ -194,15 +195,5 @@
     50% {
       box-shadow: 0 0 40px rgba(102, 126, 234, 0.6);
     }
-  }
-  
-  /* Morphing shapes */
-  .morph-shape {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    transition: border-radius 0.5s ease;
-  }
-  
-  .morph-shape:hover {
-    border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
   }
 }
