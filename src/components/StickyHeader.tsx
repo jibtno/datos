@@ -40,20 +40,22 @@ const StickyHeader = () => {
             <span className={`text-lg font-bold ${brandText}`}>PropROI</span>
           </div>
 
-          {/* desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            <button className={`${linkClass} font-medium`}>
-              Explore Markets
-            </button>
-            <button className={`flex items-center gap-1 ${linkClass} font-medium`}>
-              <GitCompare className="h-4 w-4" />
-              Compare
-            </button>
-            <button className={`flex items-center gap-1 ${linkClass} font-medium`}>
-              <TrendingUp className="h-4 w-4" />
-              ROI Calculator
-            </button>
-          </nav>
+          {/* desktop nav - only show when scrolled */}
+          {scrolled && (
+            <nav className="hidden md:flex items-center gap-6">
+              <button className={`${linkClass} font-medium`}>
+                Explore Markets
+              </button>
+              <button className={`flex items-center gap-1 ${linkClass} font-medium`}>
+                <GitCompare className="h-4 w-4" />
+                Compare
+              </button>
+              <button className={`flex items-center gap-1 ${linkClass} font-medium`}>
+                <TrendingUp className="h-4 w-4" />
+                ROI Calculator
+              </button>
+            </nav>
+          )}
 
           {/* actions */}
           <div className="flex items-center gap-3">
