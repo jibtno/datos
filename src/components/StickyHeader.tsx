@@ -1,17 +1,38 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Button } from "@/components/ui/button";
 import { Calculator, TrendingUp, GitCompare } from "lucide-react";
 
 const StickyHeader = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const router = useRouter();
+  const supabase = createClientComponentClient();
 
+  // Scroll state
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0);
-    onScroll(); // run once on mount
+    onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Auth state
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => { listener?.subscription.unsubscribe(); };
+  }, [supabase]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+    router.push("/");
+  };
 
   // Colors
   const blueText = "text-blue-900";
@@ -70,12 +91,35 @@ const StickyHeader = () => {
 
           {/* actions */}
           <div className="flex items-center gap-3">
-            <Button variant="outline" size="sm" className={buttonClass}>
-              Sign&nbsp;In
-            </Button>
-            <Button variant="outline" size="sm" className={buttonClass}>
-              Start&nbsp;Free
-            </Button>
+            {user ? (
+              <Button
+                variant="outline"
+                size="sm"
+                className={buttonClass}
+                onClick={handleLogout}
+              >
+                Log out
+              </Button>
+            ) : (
+              <>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className={buttonClass}
+                  onClick={() => router.push("/auth/signin")}
+                >
+                  Sign&nbsp;In
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className={buttonClass}
+                  onClick={() => router.push("/auth/signup")}
+                >
+                  Start&nbsp;Free
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>

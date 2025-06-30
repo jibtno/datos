@@ -48,7 +48,7 @@ export default function SignInForm() {
       return;
     }
 
-    router.push("/admin");
+    router.push("/dashboard");
   };
 
   const handleGoogleSignIn = async () => {
