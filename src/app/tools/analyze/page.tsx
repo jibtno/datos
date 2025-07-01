@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ProgressLoading from "@/components/ProgressLoading";
@@ -24,6 +25,7 @@ const HeroValueProp = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const supabase = createClientComponentClient();
 
   const glass = {
     background: "rgba(255,255,255,0.15)",
@@ -36,16 +38,50 @@ const HeroValueProp = () => {
   const ctaButton =
     "bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-500 hover:from-blue-800 hover:to-indigo-600 text-white font-bold shadow-lg text-lg rounded-xl px-7 py-4 transition duration-200 h-[56px] md:h-[56px]";
 
-  const handleSearch = (e?: React.FormEvent) => {
+  const handleSearch = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    if (searchQuery.trim()) {
+    const trimmed = searchQuery.trim();
+    if (!trimmed) return;
+
+    // Airbnb URL detection
+    if (/^https:\/\/(www\.)?airbnb\.com\/rooms\//.test(trimmed)) {
       setLoading(true);
+      const res = await fetch("/api/scrape-airbnb", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: trimmed }),
+      });
+      const propertyInfo = await res.json();
+      setLoading(false);
+
+      // Pass all relevant info via query params
+      const params = new URLSearchParams({
+        address: propertyInfo.address || "",
+        beds: propertyInfo.beds || "",
+        baths: propertyInfo.baths || "",
+        latitude: propertyInfo.latitude || "",
+        longitude: propertyInfo.longitude || "",
+        city: propertyInfo.city || "",
+        region: propertyInfo.region || "",
+        // ...add more as needed
+      }).toString();
+
+      router.push(`/tools/analyze/results?${params}`);
+      return;
     }
+
+    // Default: show loading and go to dashboard/results
+    setLoading(true);
   };
 
-  // When loading completes, navigate to dashboard
-  const handleLoadingComplete = () => {
-    router.push("/dashboard");
+  // When loading completes, check auth and route accordingly
+  const handleLoadingComplete = async () => {
+    const { data } = await supabase.auth.getUser();
+    if (data.user) {
+      router.push(`/tools/analyze/results?query=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      router.push("/dashboard");
+    }
   };
 
   if (loading) return <ProgressLoading searchQuery={searchQuery} onComplete={handleLoadingComplete} />;

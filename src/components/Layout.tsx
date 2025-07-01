@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar/Avatar";
 import {
   LayoutDashboard, Search, FolderKanban, BarChart2, TrendingUp, Globe, CalendarCheck,
   FileText, Star, Bell, Settings, MessageSquareHeart, Home, Menu, X, Target,
@@ -113,45 +113,49 @@ export default function Layout({ children, pageTitle, showAnalyzeButton = false 
 
           {/* Navigation Sections */}
           <nav className="flex-1 px-1 py-2 space-y-4 overflow-y-auto">
-            {sidebarLinks.map(section => (
-              <div key={section.section}>
-                {sidebarExpanded && (
-                  <div className="text-xs uppercase font-semibold tracking-wide text-slate-500 mb-2 text-center w-full">
-                    {section.section}
-                  </div>
-                )}
-                <div className="space-y-1">
-                  {section.items.map(item => {
-                    const isActive = pathname === item.path;
-                    const Icon = item.icon;
-                    return (
-                      <button
-                        key={item.label}
-                        onClick={() => {
-                          router.push(item.path);
-                          setSidebarOpenMobile(false);
-                        }}
-                        className={cn(
-                          "w-full flex items-center transition-all duration-200 rounded-xl text-left",
-                          sidebarExpanded
-                            ? "gap-2 px-3 py-2"
-                            : "justify-center px-2 py-3",
-                          isActive
-                            ? "bg-gradient-to-r from-purple-500/20 to-indigo-600/20 text-purple-700 border border-purple-200/50 shadow-lg"
-                            : "text-slate-700 hover:bg-white/30 hover:text-slate-900"
-                        )}
-                      >
-                        <span className="flex items-center justify-center">
-                          <Icon className="w-5 h-5 flex-shrink-0" />
-                        </span>
-                        {sidebarExpanded && <span className="font-medium ml-2 truncate">{item.label}</span>}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </nav>
+  {sidebarLinks.map(section => (
+    <div key={section.section}>
+      {sidebarExpanded && (
+        <div className="text-xs uppercase font-semibold tracking-wide text-slate-500 mb-2 text-center w-full">
+          {section.section}
+        </div>
+      )}
+      <div className="space-y-1">
+        {section.items.map(item => {
+          const isActive = pathname === item.path;
+          const Icon = item.icon;
+          return (
+            <button
+              key={item.label}
+              onClick={() => {
+                router.push(item.path);
+                setSidebarOpenMobile(false);
+              }}
+              className={cn(
+                "w-full flex items-center transition-all duration-200 rounded-xl text-left",
+                sidebarExpanded
+                  ? "gap-2 px-3 py-2"
+                  : "justify-center px-2 py-3",
+                isActive
+                  ? "bg-gradient-to-r from-purple-500/20 to-indigo-600/20 text-purple-700 border border-purple-200/50 shadow-lg"
+                  : "text-slate-700 hover:bg-white/30 hover:text-slate-900"
+              )}
+            >
+              <span className="flex items-center justify-center">
+                <Icon className="w-5 h-5 flex-shrink-0" />
+              </span>
+              {sidebarExpanded && (
+                <span className="font-medium ml-2 truncate text-[13px] leading-5">
+                  {item.label}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  ))}
+</nav>
           {/* Footer */}
           <div className={cn("p-2 border-t border-white/20 transition-all duration-300", sidebarExpanded ? "" : "justify-center flex")}>
             <div className={cn("bg-white/20 backdrop-blur-xl rounded-xl p-2 border border-white/30", sidebarExpanded ? "" : "w-8 h-8 flex items-center justify-center p-0")}>

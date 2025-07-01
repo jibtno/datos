@@ -17,15 +17,15 @@
       "static/css/app/page.css",
       "static/chunks/app/page.js"
     ],
-    "/dashboard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/page.js"
-    ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
+    ],
+    "/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/page.js"
     ],
     "/auth/signin/page": [
       "static/chunks/webpack.js",
@@ -42,15 +42,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/tools/analyze/page.js"
     ],
-    "/tools/pricing-coach/page": [
+    "/tools/analyze/results/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/tools/pricing-coach/page.js"
-    ],
-    "/mydata/portfolio/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/mydata/portfolio/page.js"
+      "static/chunks/app/tools/analyze/results/page.js"
     ]
   }
 }

@@ -1,9 +1,7 @@
 {
-  "/tools/analyze/page": "app/tools/analyze/page.js",
-  "/tools/pricing-coach/page": "app/tools/pricing-coach/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/mydata/portfolio/page": "app/mydata/portfolio/page.js",
+  "/tools/analyze/results/page": "app/tools/analyze/results/page.js",
   "/auth/signin/page": "app/auth/signin/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/tools/analyze/page": "app/tools/analyze/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
 }
